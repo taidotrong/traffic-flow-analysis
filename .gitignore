@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments and secrets
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local datasets and generated outputs
+data/
+datasets/
+outputs/
+runs/
+wandb/
+
+# Model binaries and large archives
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.tflite
+*.zip
+*.tar
+*.tar.gz
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

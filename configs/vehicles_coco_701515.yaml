@@ -1,0 +1,18 @@
+# Edit `path` if the dataset is stored elsewhere.
+path: ../data/vehicles-coco-701515
+train: train/images
+val: valid/images
+test: test/images
+
+names:
+  0: bus
+  1: car
+  2: motorcycle
+  3: truck
+
+roboflow:
+  workspace: vehicle-mscoco
+  project: vehicles-coco
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/vehicle-mscoco/vehicles-coco/dataset/2
