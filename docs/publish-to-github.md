@@ -1,57 +1,24 @@
-# Chuẩn bị và push lên GitHub
+# Repository validation and publishing
 
-Thư mục local do Codex chuẩn bị đã được `git init -b main` và toàn bộ file hợp lệ đã được stage. Chưa có commit vì máy chưa cấu hình `user.name`/`user.email`, và chưa có remote vì chưa được cung cấp URL repository GitHub.
+The project repository is [taidotrong/traffic-flow-analysis](https://github.com/taidotrong/traffic-flow-analysis). The latest source import and validation details are recorded in [validation.md](validation.md).
 
-## Từ thư mục local hiện tại
-
-```bash
-cd /Users/taidotrong/.codex/.chatgpt-projects/g-p-6a5c726aae348191afd47c2c638955c0/traffic-flow-analysis
-
-git config user.name "TEN_CUA_BAN"
-git config user.email "EMAIL_GITHUB_CUA_BAN"
-git commit -m "Initial traffic flow analysis baseline"
-```
-
-Tạo một repository trống trên GitHub (không khởi tạo thêm README/.gitignore), rồi thêm remote và push:
+From a clean clone:
 
 ```bash
-git remote add origin git@github.com:USERNAME/REPOSITORY.git
-git push -u origin main
-```
-
-Nếu dùng HTTPS:
-
-```bash
-git remote add origin https://github.com/USERNAME/REPOSITORY.git
-git push -u origin main
-```
-
-## Dùng GitHub CLI
-
-Sau khi `gh auth login`, có thể tạo repo và push trong một lệnh. Chọn đúng `--private` hoặc `--public`:
-
-```bash
-gh repo create REPOSITORY --source=. --remote=origin --private --push
-```
-
-## Nếu bắt đầu từ ZIP
-
-```bash
-unzip traffic-flow-analysis-github-ready.zip
+git clone https://github.com/taidotrong/traffic-flow-analysis.git
 cd traffic-flow-analysis
-git init -b main
-git add .
-git commit -m "Initial traffic flow analysis baseline"
-git remote add origin git@github.com:USERNAME/REPOSITORY.git
-git push -u origin main
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
+python scripts/validate_notebooks.py
+node --check dashboard/static/js/app.js
+docker compose -f dashboard/docker-compose.yml config --quiet
+git diff --check
 ```
 
-## Kiểm tra trước khi push
+For real-model validation, obtain the weights and short video from the links in [dashboard/README.md](../dashboard/README.md), then run `scripts/smoke_dashboard.py` with those paths. Notebook validation does not execute training.
 
-```bash
-git diff --cached --check
-git status --short
-git remote -v
-```
+Review and stage intended source changes, then commit and push to the existing remote using your configured GitHub identity. Do not force-push or replace the baseline history. The GitHub Actions workflow repeats the regression, notebook, syntax and Compose checks.
 
-Không dùng `git add -f` cho dataset, checkpoint hoặc archive lớn. Các mục `data/`, `runs/`, `outputs/`, `*.pt` và `*.zip` đã được `.gitignore` loại trừ. Nếu muốn phát hành checkpoint, ưu tiên GitHub Releases hoặc Git LFS.
+Generated databases, cookies, videos, datasets, checkpoint binaries and validation outputs are ignored. The small original sample database is intentionally tracked as a migration fixture. Keep model download locations and hashes in [models/README.md](../models/README.md); do not force-add ignored binary artifacts.

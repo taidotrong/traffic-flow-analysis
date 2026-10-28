@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Hệ Thống Đếm Xe</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="main-container">
+    <!-- ================= PANEL TRAI: MAN HINH VIDEO ================= -->
+    <div class="panel panel-video">
+        <div class="video-stage" id="videoStage">
+            <img id="frameImage" alt="Khung hình video">
+            <canvas id="overlayCanvas"></canvas>
+            <div class="video-placeholder" id="videoPlaceholder"></div>
+        </div>
+    </div>
+    <!-- ================= PANEL PHAI: DIEU KHIEN ================= -->
+    <div class="panel panel-controls">
+        <!-- Nguon ghi hinh -->
+        <section class="section">
+            <h3 class="section-title">Nguồn ghi hình</h3>
+            <div class="source-row">
+                <select id="videoSelect" class="source-select full-width">
+                    <option value="">-- Chọn video --</option>
+                    <option value="__youtube__">+ Nhập link YouTube</option>
+                </select>
+            </div>
+            <!-- ============================================================
+                 CHI CHEN THEM (YOUTUBE): o nhap link YouTube, mac dinh AN,
+                 chi HIEN khi nguoi dung chon "+ Nhap link YouTube" trong
+                 dropdown ben tren. Khong thay doi bat ky phan tu nao khac
+                 cua khoi "Nguon ghi hinh".
+                 ============================================================ -->
+            <div id="youtubeInputGroup" class="youtube-input-group">
+                <input type="text" id="youtubeUrlInput" class="youtube-url-input"
+                       placeholder="Dán link YouTube vào đây...">
+                <button id="btnConfirmYoutube" class="youtube-confirm-btn">Xác nhận</button>
+            </div>
+            <div id="sourceMsg" class="msg-line"></div>
+            <div class="hint-line">
+                * Chọn video từ thư mục nguồn ghi hình.
+                Chọn "+ Nhập link YouTube" để dùng video trực tiếp từ YouTube thay vì file có sẵn.
+            </div>
+        </section>
+        <hr class="divider">
+        <!-- Co so du lieu (CSDL) -->
+        <section class="section">
+            <h3 class="section-title">Cơ sở dữ liệu (CSDL)</h3>
+            <div class="source-row">
+                <select id="dbSelect" class="source-select">
+                    <option value="">-- Chọn database --</option>
+                </select>
+                <button id="btnDisconnectDb" class="disconnect-btn" disabled>Ngắt kết nối</button>
+            </div>
+            <div id="dbMsg" class="msg-line"></div>
+            <div class="hint-line">
+                * Mỗi phiên đếm tự sinh sẽ nằm trong 1 thư mục con riêng (đặt tên
+                theo ngày giờ tạo). Bỏ trống để hệ thống tự tạo CSDL mới khi bấm "Bắt đầu".
+            </div>
+        </section>
+        <hr class="divider">
+        <!-- Cau hinh Cross-Line -->
+        <section class="section">
+            <h3 class="section-title">Cấu hình Cross-Line</h3>
+            <div class="row-space-between">
+                <div class="point-config">
+                    <div class="point-label label-start">Điểm bắt đầu</div>
+                    <button class="pick-btn pick-btn-start" id="btnPickStart">Chọn điểm</button>
+                    <input type="text" class="coord-input" id="coordStart" placeholder="x, y">
+                </div>
+                <div class="point-config">
+                    <div class="point-label label-end">Điểm kết thúc</div>
+                    <button class="pick-btn pick-btn-end" id="btnPickEnd">Chọn điểm</button>
+                    <input type="text" class="coord-input" id="coordEnd" placeholder="x, y">
+                </div>
+            </div>
+            <div class="row-space-between direction-row">
+                <div class="direction-config">
+                    <div class="point-label direction-label-1">Hướng 1</div>
+                    <input type="text" class="direction-input direction-input-1" id="huong1Input"
+                           placeholder="Nhập thông tin hướng 1">
+                </div>
+                <div class="direction-config">
+                    <div class="point-label direction-label-2">Hướng 2</div>
+                    <input type="text" class="direction-input direction-input-2" id="huong2Input"
+                           placeholder="Nhập thông tin hướng 2">
+                </div>
+            </div>
+            <div class="row-space-between session-btn-row">
+                <div class="session-btn-col">
+                    <button id="btnBatDau" class="session-btn start-btn">Bắt đầu</button>
+                </div>
+                <div class="session-btn-col">
+                    <button id="btnTamDung" class="session-btn pause-btn" disabled>Tạm dừng</button>
+                </div>
+                <div class="session-btn-col">
+                    <button id="btnDung" class="session-btn stop-btn" disabled>Dừng</button>
+                </div>
+            </div>
+            <div id="sessionMsg" class="msg-line"></div>
+            <!-- ============================================================
+                 CHI CHEN THEM: O HIEN THI FPS, dat NGAY DUOI 3 nut dieu
+                 khien phien (Bat dau/Tam dung/Dung), dung vi tri nguoi
+                 dung yeu cau. Mac dinh hien "-- FPS" khi chua chay.
+                 ============================================================ -->
+            <div class="fps-display-box">
+                <span class="fps-label">Tốc độ xử lý:</span>
+                <span id="fpsValue" class="fps-value">-- FPS</span>
+            </div>
+        </section>
+        <hr class="divider">
+        <!-- Thong ke -->
+        <section class="section">
+            <h3 class="section-title">Thống kê số lượng phương tiện</h3>
+            <div class="row-center">
+                <div class="time-config">
+                    <div class="point-label">Thời gian hiện tại</div>
+                    <input type="text" id="thoiGianHienTai" readonly>
+                </div>
+            </div>
+            <div id="statsHint" class="msg-line"></div>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th id="huong1Header">Hướng 1</th>
+                        <th id="huong2Header">Hướng 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="stats-row-label">Xe buýt</td>
+                        <td><input type="text" id="busH1" readonly></td>
+                        <td><input type="text" id="busH2" readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="stats-row-label">Xe máy</td>
+                        <td><input type="text" id="motoH1" readonly></td>
+                        <td><input type="text" id="motoH2" readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="stats-row-label">Xe hơi</td>
+                        <td><input type="text" id="carH1" readonly></td>
+                        <td><input type="text" id="carH2" readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="stats-row-label">Xe tải</td>
+                        <td><input type="text" id="truckH1" readonly></td>
+                        <td><input type="text" id="truckH2" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 class="query-section-title">Truy xuất dữ liệu</h4>
+            <div class="row-space-between time-row-bottom">
+                <div class="time-config">
+                    <div class="point-label">Từ thời điểm</div>
+                    <input type="datetime-local" id="tuThoiDiem" step="1">
+                </div>
+                <div class="time-config">
+                    <div class="point-label">Đến thời điểm</div>
+                    <input type="datetime-local" id="denThoiDiem" step="1">
+                </div>
+            </div>
+            <div class="row-center">
+                <button id="btnExportDetail" class="export-btn" disabled>
+                    Xuất dữ liệu chi tiết
+                </button>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- ================= MODAL: XUAT DU LIEU CHI TIET ================= -->
+<div id="detailModal" class="modal-overlay hidden">
+    <div class="modal-box modal-box-large">
+        <h3>Dữ liệu chi tiết theo khoảng thời gian</h3>
+        <div id="detailRangeInfo" class="range-info"></div>
+        <h4>Bảng tổng hợp theo loại &amp; hướng</h4>
+        <table class="detail-summary-table" id="detailSummaryTable">
+            <thead><tr><th>Loại phương tiện</th><th>Hướng</th><th>Số lượng</th></tr></thead>
+            <tbody></tbody>
+        </table>
+        <h4>Danh sách chi tiết từng lượt cắt vạch</h4>
+        <div class="detail-list-container">
+            <table class="detail-list-table" id="detailListTable">
+                <thead><tr><th>Thời gian</th><th>Mã ID</th><th>Loại</th><th>Hướng</th><th>FPS</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="modal-actions">
+            <button id="btnDownloadCsv">Tải file CSV</button>
+            <button id="btnCloseDetailModal" class="secondary-btn">Đóng</button>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -57,3 +57,20 @@ GitHub chặn file đơn lớn hơn 100 MB. Trọng số dưới giới hạn nh
 2. Xác nhận tên đồ án, tên nhóm/tác giả và thông tin môn học muốn hiển thị.
 3. Quyết định để Drive weight ở chế độ công khai, dùng GitHub Release hay Git LFS.
 4. Kiểm tra quyền sử dụng mọi ảnh minh họa ngoài dataset CC BY 4.0.
+
+## Update: 28 October 2026
+
+The current Drive root was checked again against GitHub commit `211dfdd`. The newer runtime source is `DASHBOARD-DEMO/Source Code DashBoard`, with source files modified on 26 September 2026. The older `DASHBOARD` copy and the earlier submission/baseline folders were retained as historical sources rather than overlaid on the newer application.
+
+| Drive source | Repository destination |
+|---|---|
+| `DASHBOARD-DEMO/Source Code DashBoard` | `dashboard/` (Flask, templates, JS/CSS, services, Docker, sample DB) |
+| `DASHBOARD-DEMO/Source AI` | `notebooks/tracking/` |
+| `Fine-Tune` | `notebooks/fine_tuning/` (ten notebooks) |
+| `SQLite/Code` and root `Viec_CDE.ipynb` | `notebooks/database/` |
+| `DASHBOARD-DEMO/Model/best.pt` | Downloaded locally to ignored `models/best.pt`; documented in `models/README.md` |
+| `DASHBOARD-DEMO/Source Video/hcm_traffic_short.mp4` | Downloaded locally to ignored `dashboard/sample_videos/`; linked in the dashboard guide |
+
+The [import manifest](drive-import-manifest.json) records all 30 selected files, observed Drive IDs, source sizes and modification times. Source sizes refer to the original Drive files before documented validation fixes. Runtime databases, personal path-state JSON files, multi-gigabyte videos, training datasets, duplicate source notebooks and unrelated reports were not added to Git. The 12 KB sample database distributed with the dashboard is retained as a fixture, including its original 30 historical events.
+
+The imported source was corrected for local paths, portable Compose mounts, old database schema migration, vehicle class aliases, crossings exactly on the line, worker error propagation/resource cleanup, session request serialization, source URL validation, safe result-table rendering, dropdown refresh races and narrow-screen video layout. See [validation evidence and limits](validation.md).

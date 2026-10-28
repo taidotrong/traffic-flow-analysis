@@ -1,0 +1,276 @@
+{
+  "imported_date": "2026-10-28",
+  "source_folder": "https://drive.google.com/drive/folders/1WhcqICO5w6iVwbBcCYkPMXQf9-IvVZMs",
+  "files": [
+    {
+      "drive_id": "17pTAOLn71iQ8V7N8On19dBxEovCF0jUv",
+      "name": "app.py",
+      "path": "dashboard/app.py",
+      "source_url": "https://drive.google.com/file/d/17pTAOLn71iQ8V7N8On19dBxEovCF0jUv/view?usp=drivesdk",
+      "source_size_bytes": 35436,
+      "modified_time": "2026-09-26T07:52:47.349Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "18S7lBtP8AYMDUhmcQCWWVcnfcLXSFbxD",
+      "name": "requirements.txt",
+      "path": "dashboard/requirements.txt",
+      "source_url": "https://drive.google.com/file/d/18S7lBtP8AYMDUhmcQCWWVcnfcLXSFbxD/view?usp=drivesdk",
+      "source_size_bytes": 85,
+      "modified_time": "2026-09-26T07:52:47.333Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1ZB3c6Jxou7jObx2HJ0TWpnlLFKbg7lmk",
+      "name": "docker-compose.yml",
+      "path": "dashboard/docker-compose.yml",
+      "source_url": "https://drive.google.com/file/d/1ZB3c6Jxou7jObx2HJ0TWpnlLFKbg7lmk/view?usp=drivesdk",
+      "source_size_bytes": 883,
+      "modified_time": "2026-09-26T07:52:47.297Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1kFRqhm2fLNxleWFalcTG85hGV3mMHfWV",
+      "name": "Dockerfile",
+      "path": "dashboard/Dockerfile",
+      "source_url": "https://drive.google.com/file/d/1kFRqhm2fLNxleWFalcTG85hGV3mMHfWV/view?usp=drivesdk",
+      "source_size_bytes": 422,
+      "modified_time": "2026-09-26T07:52:47.270Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1sz7xCtEps_f3W3KgPteWgS3p2c_XwQ2K",
+      "name": "index.html",
+      "path": "dashboard/templates/index.html",
+      "source_url": "https://drive.google.com/file/d/1sz7xCtEps_f3W3KgPteWgS3p2c_XwQ2K/view?usp=drivesdk",
+      "source_size_bytes": 10009,
+      "modified_time": "2026-09-26T07:52:44.843Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1u8F4WCpN_yQCubfuQd2ufIbn26rQxLzc",
+      "name": "__init__.py",
+      "path": "dashboard/services/__init__.py",
+      "source_url": "https://drive.google.com/file/d/1u8F4WCpN_yQCubfuQd2ufIbn26rQxLzc/view?usp=drivesdk",
+      "source_size_bytes": 422,
+      "modified_time": "2026-09-26T07:52:51.986Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "120WdPDzTCJ7CzyB4XyFj4SrqY-nPRvsX",
+      "name": "video_worker.py",
+      "path": "dashboard/services/video_worker.py",
+      "source_url": "https://drive.google.com/file/d/120WdPDzTCJ7CzyB4XyFj4SrqY-nPRvsX/view?usp=drivesdk",
+      "source_size_bytes": 7280,
+      "modified_time": "2026-09-26T07:52:51.107Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1i589QssWSm2t7U0RDhArFqMLwuVbjtlt",
+      "name": "tracker_service.py",
+      "path": "dashboard/services/tracker_service.py",
+      "source_url": "https://drive.google.com/file/d/1i589QssWSm2t7U0RDhArFqMLwuVbjtlt/view?usp=drivesdk",
+      "source_size_bytes": 3717,
+      "modified_time": "2026-09-26T07:52:50.370Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1i_JwPCGrAaiJqZn2qOjV2rMMuq1yVd-M",
+      "name": "line_crossing_service.py",
+      "path": "dashboard/services/line_crossing_service.py",
+      "source_url": "https://drive.google.com/file/d/1i_JwPCGrAaiJqZn2qOjV2rMMuq1yVd-M/view?usp=drivesdk",
+      "source_size_bytes": 5478,
+      "modified_time": "2026-09-26T07:52:49.729Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1x3Njs9115YHKGsSIN9UBG0yiH-GaU5Rm",
+      "name": "youtube_service.py",
+      "path": "dashboard/services/youtube_service.py",
+      "source_url": "https://drive.google.com/file/d/1x3Njs9115YHKGsSIN9UBG0yiH-GaU5Rm/view?usp=drivesdk",
+      "source_size_bytes": 5923,
+      "modified_time": "2026-09-26T07:04:47.390Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1aEj7Skgc_TzNEf58DLdty7uv0-hTpihs",
+      "name": ".gitkeep",
+      "path": "dashboard/sample_videos/.gitkeep",
+      "source_url": "https://drive.google.com/file/d/1aEj7Skgc_TzNEf58DLdty7uv0-hTpihs/view?usp=drivesdk",
+      "source_size_bytes": 0,
+      "modified_time": "2026-09-26T07:52:49.564Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1EE4PtowJy9GTf34ghcSVBmX4dqUNCJOe",
+      "name": "he_thong_dem_xe_sample.db",
+      "path": "dashboard/sample_data/he_thong_dem_xe_sample.db",
+      "source_url": "https://drive.google.com/file/d/1EE4PtowJy9GTf34ghcSVBmX4dqUNCJOe/view?usp=drivesdk",
+      "source_size_bytes": 12288,
+      "modified_time": "2026-09-26T07:52:49.468Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1J-EXtywxWpjZZ9vWYsnF4CLbkhyxZr0F",
+      "name": "app.js",
+      "path": "dashboard/static/js/app.js",
+      "source_url": "https://drive.google.com/file/d/1J-EXtywxWpjZZ9vWYsnF4CLbkhyxZr0F/view?usp=drivesdk",
+      "source_size_bytes": 36652,
+      "modified_time": "2026-09-26T07:52:44.853Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1LG8nwEsTiCwGZYUXERD359gAB-0smCTR",
+      "name": "style.css",
+      "path": "dashboard/static/css/style.css",
+      "source_url": "https://drive.google.com/file/d/1LG8nwEsTiCwGZYUXERD359gAB-0smCTR/view?usp=drivesdk",
+      "source_size_bytes": 9617,
+      "modified_time": "2026-09-26T07:52:44.846Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1Dyt7ztWHPu9gpx7imB6qQMQhH8lmU-bL",
+      "name": "TrainA_Eval_Compare_seed1712.ipynb",
+      "path": "notebooks/fine_tuning/TrainA_Eval_Compare_seed1712.ipynb",
+      "source_url": "https://drive.google.com/file/d/1Dyt7ztWHPu9gpx7imB6qQMQhH8lmU-bL/view?usp=drivesdk",
+      "source_size_bytes": 120014,
+      "modified_time": "2026-09-15T13:44:55.112Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1fH0cpYdZWXiivjhKCEwoj9zlOVgz2sBf",
+      "name": "CanTho_to_HCMC_seed1712.ipynb",
+      "path": "notebooks/fine_tuning/CanTho_to_HCMC_seed1712.ipynb",
+      "source_url": "https://drive.google.com/file/d/1fH0cpYdZWXiivjhKCEwoj9zlOVgz2sBf/view?usp=drivesdk",
+      "source_size_bytes": 100865,
+      "modified_time": "2026-09-15T13:44:38.687Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1myYZM7tAhukkASCAVLgv75ZVN4EP_wfM",
+      "name": "COCO_to_CanTho_seed1712.ipynb",
+      "path": "notebooks/fine_tuning/COCO_to_CanTho_seed1712.ipynb",
+      "source_url": "https://drive.google.com/file/d/1myYZM7tAhukkASCAVLgv75ZVN4EP_wfM/view?usp=drivesdk",
+      "source_size_bytes": 53349,
+      "modified_time": "2026-09-15T13:44:22.542Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1nfTM7DOKdRhrAXUUTNprP_z8uyvjROr4",
+      "name": "TrainA_Eval_Compare_seed1407.ipynb",
+      "path": "notebooks/fine_tuning/TrainA_Eval_Compare_seed1407.ipynb",
+      "source_url": "https://drive.google.com/file/d/1nfTM7DOKdRhrAXUUTNprP_z8uyvjROr4/view?usp=drivesdk",
+      "source_size_bytes": 95494,
+      "modified_time": "2026-09-09T06:01:24.812Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1O_T2zIT-UNz2KMRnptI9OzrvdqtDKxo8",
+      "name": "CanTho_to_HCMC_seed1407.ipynb",
+      "path": "notebooks/fine_tuning/CanTho_to_HCMC_seed1407.ipynb",
+      "source_url": "https://drive.google.com/file/d/1O_T2zIT-UNz2KMRnptI9OzrvdqtDKxo8/view?usp=drivesdk",
+      "source_size_bytes": 82067,
+      "modified_time": "2026-09-08T13:42:24.757Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1Bjg680jiJNdGPU2F9PeGJ_Oldy1hoXdi",
+      "name": "COCO_to_CanTho_seed1407.ipynb",
+      "path": "notebooks/fine_tuning/COCO_to_CanTho_seed1407.ipynb",
+      "source_url": "https://drive.google.com/file/d/1Bjg680jiJNdGPU2F9PeGJ_Oldy1hoXdi/view?usp=drivesdk",
+      "source_size_bytes": 7209,
+      "modified_time": "2026-09-08T06:22:45.178Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1EPATwSkP0qPFl0lpMSGVl2JDiK0mLnIU",
+      "name": "Ablation_COCO_HCMC_vs_Sequential.ipynb",
+      "path": "notebooks/fine_tuning/Ablation_COCO_HCMC_vs_Sequential.ipynb",
+      "source_url": "https://drive.google.com/file/d/1EPATwSkP0qPFl0lpMSGVl2JDiK0mLnIU/view?usp=drivesdk",
+      "source_size_bytes": 189367,
+      "modified_time": "2026-09-07T21:21:18.039Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1k9nn7oOZR9kTslcPEL8nDkiRKQQ3eSl_",
+      "name": "Finetune_HCMC.ipynb",
+      "path": "notebooks/fine_tuning/Finetune_HCMC.ipynb",
+      "source_url": "https://drive.google.com/file/d/1k9nn7oOZR9kTslcPEL8nDkiRKQQ3eSl_/view?usp=drivesdk",
+      "source_size_bytes": 765254,
+      "modified_time": "2026-09-03T08:42:28.391Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1rrB20umnUTQDcAM6i-XjmGHIRc5_gFjK",
+      "name": "Finetune_Cantho.ipynb",
+      "path": "notebooks/fine_tuning/Finetune_Cantho.ipynb",
+      "source_url": "https://drive.google.com/file/d/1rrB20umnUTQDcAM6i-XjmGHIRc5_gFjK/view?usp=drivesdk",
+      "source_size_bytes": 67228,
+      "modified_time": "2026-09-03T07:50:41.583Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "10ZnnN0u-A7zlTR9tSqc6Ya7A4ya8Yr3b",
+      "name": "Ma_tran_so_sanh.ipynb",
+      "path": "notebooks/fine_tuning/Ma_tran_so_sanh.ipynb",
+      "source_url": "https://drive.google.com/file/d/10ZnnN0u-A7zlTR9tSqc6Ya7A4ya8Yr3b/view?usp=drivesdk",
+      "source_size_bytes": 140521,
+      "modified_time": "2026-08-23T23:18:59.312Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1-Rss0pSX08HZ6ip5pCeF2QR_rIpbSUAg",
+      "name": "LINE-CROSSING.ipynb",
+      "path": "notebooks/tracking/LINE-CROSSING.ipynb",
+      "source_url": "https://drive.google.com/file/d/1-Rss0pSX08HZ6ip5pCeF2QR_rIpbSUAg/view?usp=drivesdk",
+      "source_size_bytes": 1232368,
+      "modified_time": "2026-09-01T02:59:35.878Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1qE3K_IZNQA_InbiwsniRakq6BYcFMVyZ",
+      "name": "BYTETRACK.ipynb",
+      "path": "notebooks/tracking/BYTETRACK.ipynb",
+      "source_url": "https://drive.google.com/file/d/1qE3K_IZNQA_InbiwsniRakq6BYcFMVyZ/view?usp=drivesdk",
+      "source_size_bytes": 135232,
+      "modified_time": "2026-08-30T10:04:59.307Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1i31zb5cou9gGIdzRLSlfLn-0JiSTK5a7",
+      "name": "best.pt",
+      "path": "models/best.pt",
+      "source_url": "https://drive.google.com/file/d/1i31zb5cou9gGIdzRLSlfLn-0JiSTK5a7/view?usp=drivesdk",
+      "source_size_bytes": 6261866,
+      "modified_time": "2026-08-08T09:56:26.000Z",
+      "in_git": false
+    },
+    {
+      "drive_id": "1Z20WdNJ3idfnQzi0KE2eDYu2gAJwkFj7",
+      "name": "hcm_traffic_short.mp4",
+      "path": "dashboard/sample_videos/hcm_traffic_short.mp4",
+      "source_url": "https://drive.google.com/file/d/1Z20WdNJ3idfnQzi0KE2eDYu2gAJwkFj7/view?usp=drivesdk",
+      "source_size_bytes": 806431,
+      "modified_time": "2026-08-30T09:51:36.216Z",
+      "in_git": false
+    },
+    {
+      "drive_id": "1wijLr4ig7wdLLWWZn4thvwSLw131S_Tl",
+      "name": "SQLite.ipynb",
+      "path": "notebooks/database/SQLite.ipynb",
+      "source_url": "https://drive.google.com/file/d/1wijLr4ig7wdLLWWZn4thvwSLw131S_Tl/view?usp=drivesdk",
+      "source_size_bytes": 18977,
+      "modified_time": "2026-09-01T03:47:05.895Z",
+      "in_git": true
+    },
+    {
+      "drive_id": "1grGwv_Z6OzsB8YPtkpkml2gnzIPm7hPa",
+      "name": "Viec_CDE.ipynb",
+      "path": "notebooks/database/Viec_CDE.ipynb",
+      "source_url": "https://drive.google.com/file/d/1grGwv_Z6OzsB8YPtkpkml2gnzIPm7hPa/view",
+      "source_size_bytes": 27723,
+      "modified_time": "2026-09-03T15:54:34.817Z",
+      "in_git": true
+    }
+  ]
+}

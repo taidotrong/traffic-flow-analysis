@@ -1,8 +1,8 @@
-# Traffic Flow Analysis — Vehicle Detection Baselines
+# Traffic Flow Analysis — Detection, Tracking & Dashboard
 
-Đồ án xây dựng nền tảng phân tích lưu lượng giao thông từ ảnh/video. Phiên bản hiện tại tập trung vào lớp đầu tiên của hệ thống: phát hiện phương tiện theo thời gian thực với bốn lớp `bus`, `car`, `motorcycle`, `truck`.
+Đồ án xây dựng nền tảng phân tích lưu lượng giao thông từ ảnh/video. Hệ thống gồm phát hiện bốn lớp `bus`, `car`, `motorcycle`, `truck`, tracking ByteTrack, đếm xe qua vạch theo hướng, lưu SQLite và dashboard Flask. Dashboard chuẩn hóa `motorcycle` thành `motorbike` khi thống kê.
 
-> Trạng thái: baseline YOLOv8n đã huấn luyện và đánh giá; SSDlite320-MobileNetV3 đã có notebook/trọng số nhưng chưa có log đánh giá định lượng được lưu. Tracking, đếm xe và suy luận chỉ số lưu lượng thuộc giai đoạn tiếp theo.
+> Cập nhật 28/10/2026: đã đồng bộ mã dashboard và notebook fine-tune/tracking/SQLite từ Drive. Dashboard đã chạy local với checkpoint thật trên video mẫu 149 frame. Kết quả baseline dưới đây là số liệu lịch sử; kiểm tra local không đánh giá lại mAP hay huấn luyện lại mô hình. Xem [kết quả validation](docs/validation.md).
 
 ## Tác giả
 
@@ -14,14 +14,22 @@ flowchart LR
     A[Ảnh / video giao thông] --> B[Phát hiện phương tiện]
     B --> C[Tracking và gán ID]
     C --> D[Đếm xe theo làn / hướng]
-    D --> E[Lưu lượng, mật độ, tốc độ]
-    E --> F[Dashboard / cảnh báo]
+    D --> E[Lịch sử SQLite và thống kê]
+    E --> F[Dashboard và CSV]
     style B fill:#d8f3dc,stroke:#2d6a4f,stroke-width:2px
-    style C fill:#f1f3f5,stroke:#868e96,stroke-dasharray:5 5
-    style D fill:#f1f3f5,stroke:#868e96,stroke-dasharray:5 5
-    style E fill:#f1f3f5,stroke:#868e96,stroke-dasharray:5 5
-    style F fill:#f1f3f5,stroke:#868e96,stroke-dasharray:5 5
 ```
+
+## Chạy dashboard
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r dashboard/requirements.txt
+# Tải best.pt và video mẫu theo hướng dẫn dashboard/README.md.
+python dashboard/app.py
+```
+
+Mở http://127.0.0.1:5000, chọn video, đặt hai điểm Cross-Line và tên hai hướng, rồi bấm **Bắt đầu**. Xem [hướng dẫn dashboard](dashboard/README.md) để tải model/video, chạy Docker và kiểm thử. Trọng số, dataset, video và dữ liệu phiên sinh ra không được commit vào Git.
 
 ## Kết quả chính
 
@@ -63,11 +71,14 @@ Dataset và file ZIP 861,9 MB không được đưa vào Git. Xem [hướng dẫ
 .
 ├── assets/results/              # Biểu đồ nhỏ dùng trong README
 ├── configs/                    # YAML mẫu cho Ultralytics
-├── docs/                       # Dataset, thí nghiệm và kiểm kê Drive
+├── dashboard/                  # Flask, giao diện, tracking, SQLite và Docker
+├── docs/                       # Dataset, thí nghiệm, kiểm kê Drive và validation
 ├── models/                     # Hướng dẫn lấy trọng số; không commit *.pt
-├── notebooks/                  # Notebook Colab gốc của các thử nghiệm
+├── notebooks/                  # Baseline, fine_tuning/, tracking/, database/
 ├── results/yolov8n/            # CSV log 10/20/100 epoch
 ├── src/                        # CLI kiểm tra data, train và evaluate
+├── scripts/                    # Smoke pipeline thật và kiểm tra notebook
+├── tests/                      # Regression tests dashboard và tracking
 ├── .gitignore
 ├── requirements.txt
 └── README.md
@@ -133,7 +144,7 @@ Các notebook giữ lại quy trình Colab gốc, bao gồm mount Google Drive, 
 
 ## Giới hạn hiện tại
 
-- Kết quả mới đo cho object detection; chưa thể xem là một hệ thống phân tích lưu lượng hoàn chỉnh.
+- mAP đã lưu là kết quả object detection của baseline. Dashboard có tracking/đếm qua vạch nhưng chưa đo độ chính xác đếm trên tập video có ground truth; chưa tính tốc độ vật lý, mật độ hay cảnh báo ùn tắc.
 - Dữ liệu mất cân bằng; `truck` là lớp khó nhất dù không phải lớp ít nhất.
 - Dataset chưa đại diện đầy đủ điều kiện camera, thời tiết và phương tiện tại Việt Nam.
 - Số FPS phụ thuộc phần cứng, batch size, I/O và có/không tính tiền/hậu xử lý. Log test trên T4 ghi nhận 3,7 ms inference/ảnh, chưa phải benchmark end-to-end.
@@ -142,10 +153,10 @@ Các notebook giữ lại quy trình Colab gốc, bao gồm mount Google Drive, 
 ## Hướng phát triển
 
 1. Chạy và lưu đầy đủ đánh giá SSDlite320-MobileNetV3 trên đúng tập test 70:15:15.
-2. Fine-tune trên dữ liệu giao thông Việt Nam/Can Tho; xử lý imbalance và thử YOLOv8s/m.
-3. Thêm tracker (ByteTrack/BoT-SORT), vùng quan tâm và đếm qua vạch.
+2. Tái lập và đánh giá đầy đủ các notebook fine-tune Can Tho/HCMC mới đồng bộ từ Drive.
+3. Đo độ chính xác tracking và đếm qua vạch trên video có nhãn; phân tích ID switch.
 4. Tính lưu lượng, mật độ, tốc độ tương đối và mức ùn tắc theo cửa sổ thời gian.
-5. Đóng gói inference video/API và dashboard giám sát.
+5. Bổ sung triển khai production, xác thực và hỗ trợ nhiều người dùng cho dashboard.
 
 ## Nguồn artefact
 

@@ -23,6 +23,13 @@ datasets/
 outputs/
 runs/
 wandb/
+dashboard/data/
+cookies*.txt
+*.db-journal
+*.db-wal
+*.db-shm
+dashboard/sample_videos/*
+!dashboard/sample_videos/.gitkeep
 
 # Model binaries and large archives
 *.pt
