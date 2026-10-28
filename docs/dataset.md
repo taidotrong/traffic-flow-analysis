@@ -2,7 +2,7 @@
 
 ## Nguồn và giấy phép
 
-Dataset được xuất từ [Roboflow Universe](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco/dataset/2) ngày 22/01/2023, có 18.998 ảnh và nhãn định dạng YOLOv8. Tệp nguồn ghi giấy phép CC BY 4.0.
+Dataset được cung cấp bởi Vehicle MSCOCO trên [Roboflow Universe, phiên bản 2](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco/dataset/2) [[5]](references.md#ref-5), có 18.998 ảnh; bản dùng trong repo có nhãn định dạng YOLOv8. Trang công bố ghi phiên bản được tạo ngày 23/01/2022 và giấy phép CC BY 4.0 (đối chiếu ngày 28/10/2026). Ngày tạo phiên bản không xác định ngày nhóm tải hoặc xuất dữ liệu. Cơ sở bộ dữ liệu COCO được trình bày trong công trình của Lin và cộng sự [[4]](references.md#ref-4).
 
 Tiền xử lý được Roboflow áp dụng:
 
@@ -78,3 +78,7 @@ python src/inspect_dataset.py data/vehicles-coco-701515 \
 ```
 
 Kiểm tra thêm bằng mắt các ảnh/nhãn ngẫu nhiên, các box sát biên, class ID ngoài 0–3 và trùng lặp giữa các split. Bước chia hiện tại là random theo ảnh, chưa phải group split theo video/camera; nếu nhiều frame cùng video tồn tại, cần chia theo nhóm để tránh leakage.
+
+## Nguồn CanTho/HCMC và video mẫu
+
+Các notebook fine-tune còn dùng dữ liệu CanTho/HCMC. Nguồn công bố, phiên bản, đơn vị cung cấp và điều kiện sử dụng của hai bộ này chưa được ghi đủ trong repo. Xem [các thông tin cần bổ sung cho báo cáo](references.md#3-nguồn-cần-bổ-sung-từ-hồ-sơ-dữ-liệu); không suy ra nguồn dữ liệu hoặc cuộc thi chỉ từ tên thư mục.

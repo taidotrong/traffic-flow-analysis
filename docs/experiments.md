@@ -1,5 +1,7 @@
 # Tổng hợp thí nghiệm baseline
 
+Các mô hình và chỉ số trong tài liệu này tham khảo YOLOv8 [[2]](references.md#ref-2), COCO/Vehicles-coco [[4]](references.md#ref-4), [[5]](references.md#ref-5) và hướng dẫn metric [[13]](references.md#ref-13). Các bảng số liệu được tổng hợp từ log/notebook của nhóm; chúng không phải kết quả benchmark trích từ bài báo bên ngoài.
+
 ## 1. YOLOv8n, split 70:20:10
 
 Mô hình YOLOv8n pretrained COCO được huấn luyện trên Google Colab/Tesla T4 với ảnh 640, batch 16. Hai mốc 10 và 20 epoch dùng để có baseline nhanh.
@@ -87,7 +89,7 @@ Loss train giảm đều, còn loss validation gần như đi ngang về cuối.
 
 ## 3. SSDlite320-MobileNetV3-Large
 
-Notebook đối chứng dùng `torchvision.models.detection.ssdlite320_mobilenet_v3_large`, thay classification head thành năm lớp (bốn lớp xe + background), ảnh 320, batch 16, SGD, cosine scheduler và dự kiến 50 epoch.
+Mô hình đối chứng dựa trên SSD [[6]](references.md#ref-6), SSDLite [[7]](references.md#ref-7) và backbone MobileNetV3 [[8]](references.md#ref-8). Notebook dùng `torchvision.models.detection.ssdlite320_mobilenet_v3_large` theo API chính thức [[9]](references.md#ref-9), thay classification head thành năm lớp (bốn lớp xe + background), ảnh 320, batch 16, SGD, cosine scheduler và dự kiến 50 epoch.
 
 Drive hiện có `best.pt` và `last.pt` (mỗi file khoảng 9,28 MB), nhưng notebook được lưu với 0/8 code cell đã thực thi và bảng so sánh vẫn để trống mAP/FPS. Vì vậy repository không công bố số liệu SSD như một kết quả đã kiểm chứng.
 
@@ -99,3 +101,7 @@ Drive hiện có `best.pt` và `last.pt` (mỗi file khoảng 9,28 MB), nhưng n
 - `bus` dễ nhất; `truck` khó nhất, cho thấy độ đa dạng hình dạng/nhầm lớp quan trọng không kém số lượng mẫu.
 - Dataset imbalance là rủi ro chính cần xử lý ở giai đoạn cải thiện.
 - Chưa có bằng chứng định lượng để xếp hạng SSD-MobileNet so với YOLOv8n.
+
+## 5. Học chuyển giao và nguồn lý thuyết
+
+Các notebook trong `notebooks/fine_tuning/` khảo sát khởi tạo trực tiếp COCO→HCMC và tuần tự COCO→CanTho→HCMC. Cơ sở lý thuyết về học chuyển giao và khác biệt miền dữ liệu tham khảo Pan và Yang [[10]](references.md#ref-10); huấn luyện mô hình sử dụng Ultralytics [[2]](references.md#ref-2) trên nền PyTorch [[11]](references.md#ref-11). Kết luận so sánh hai lộ trình phải dựa trên các run có cùng tập test, seed và quy ước đo; bản kiểm tra local hiện chưa tái lập đầy đủ các run đó.

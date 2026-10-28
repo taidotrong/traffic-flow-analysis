@@ -66,3 +66,9 @@ python scripts/smoke_dashboard.py \
 ```
 
 The automated tests use generated video frames and a fake tracker to verify control and persistence behavior without downloading weights. The separate smoke script uses the real checkpoint and ByteTrack, processes the entire supplied sample, checks statistics/export/completion, and saves evidence under ignored `outputs/validation/`. See [validation results](../docs/validation.md).
+
+## References for the course report
+
+The detector uses Ultralytics YOLOv8 [[2]](../docs/references.md#ref-2); tracking follows ByteTrack [[3]](../docs/references.md#ref-3) through the Ultralytics tracking API [[12]](../docs/references.md#ref-12). Video capture, the web API and storage use OpenCV [[14]](../docs/references.md#ref-14), Flask [[15]](../docs/references.md#ref-15) and SQLite [[16]](../docs/references.md#ref-16).
+
+The application implements the line-crossing rule in `services/line_crossing_service.py`: a change in the signed side of the tracked center, class majority voting and one count per track per session. Cite the tracking sources for track generation and describe this counting rule as project implementation. For related vehicle-counting research, see [[17]](../docs/references.md#ref-17). The complete [numbered bibliography and report citation guide](../docs/references.md) and [BibTeX file](../docs/references.bib) are available for the course report.

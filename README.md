@@ -1,6 +1,6 @@
 # Traffic Flow Analysis — Detection, Tracking & Dashboard
 
-Đồ án xây dựng nền tảng phân tích lưu lượng giao thông từ ảnh/video. Hệ thống gồm phát hiện bốn lớp `bus`, `car`, `motorcycle`, `truck`, tracking ByteTrack, đếm xe qua vạch theo hướng, lưu SQLite và dashboard Flask. Dashboard chuẩn hóa `motorcycle` thành `motorbike` khi thống kê.
+Đồ án xây dựng nền tảng phân tích lưu lượng giao thông từ ảnh/video. Hệ thống gồm phát hiện bốn lớp `bus`, `car`, `motorcycle`, `truck`, tracking ByteTrack, đếm xe qua vạch theo hướng, lưu SQLite và dashboard Flask. Dashboard chuẩn hóa `motorcycle` thành `motorbike` khi thống kê. Mô hình phát hiện dùng Ultralytics YOLOv8 [[2]](docs/references.md#ref-2), tracker dựa trên ByteTrack [[3]](docs/references.md#ref-3), [[12]](docs/references.md#ref-12).
 
 > Cập nhật 28/10/2026: đã đồng bộ mã dashboard và notebook fine-tune/tracking/SQLite từ Drive. Dashboard đã chạy local với checkpoint thật trên video mẫu 149 frame. Kết quả baseline dưới đây là số liệu lịch sử; kiểm tra local không đánh giá lại mAP hay huấn luyện lại mô hình. Xem [kết quả validation](docs/validation.md).
 
@@ -33,7 +33,7 @@ Mở http://127.0.0.1:5000, chọn video, đặt hai điểm Cross-Line và tên
 
 ## Kết quả chính
 
-Baseline chính thức là YOLOv8n pretrained COCO, huấn luyện trên bộ Vehicles-COCO chia lại theo tỷ lệ 70:15:15.
+Baseline chính thức là YOLOv8n pretrained COCO [[2]](docs/references.md#ref-2), [[4]](docs/references.md#ref-4), huấn luyện trên bộ Vehicles-COCO [[5]](docs/references.md#ref-5) chia lại theo tỷ lệ 70:15:15. Định nghĩa precision, recall và mAP tham khảo tài liệu Ultralytics [[13]](docs/references.md#ref-13); các giá trị bên dưới là kết quả từ log thí nghiệm của nhóm.
 
 | Chỉ số | Validation | Test độc lập |
 |---|---:|---:|
@@ -57,7 +57,7 @@ Mô hình đạt mốc thực dụng khoảng epoch 59–60 (xấp xỉ 99% mAP 
 
 ## Dữ liệu
 
-- Nguồn: [Vehicles-COCO v2 trên Roboflow](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco/dataset/2).
+- Nguồn: Vehicle MSCOCO, [Vehicles-COCO v2 trên Roboflow](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco/dataset/2) [[5]](docs/references.md#ref-5).
 - Giấy phép dữ liệu: CC BY 4.0.
 - 18.998 ảnh, định dạng nhãn YOLOv8; ảnh được auto-orient và resize kéo giãn về 480×480; không có augmentation từ Roboflow.
 - Split sử dụng cho baseline chính: 13.298 train / 2.849 validation / 2.851 test.
@@ -157,6 +157,10 @@ Các notebook giữ lại quy trình Colab gốc, bao gồm mount Google Drive, 
 3. Đo độ chính xác tracking và đếm qua vạch trên video có nhãn; phân tích ID switch.
 4. Tính lưu lượng, mật độ, tốc độ tương đối và mức ùn tắc theo cửa sổ thời gian.
 5. Bổ sung triển khai production, xác thực và hỗ trợ nhiều người dùng cho dashboard.
+
+## Tài liệu tham khảo
+
+Danh mục [17 nguồn theo dạng đánh số IEEE](docs/references.md) bao gồm YOLO/YOLOv8, ByteTrack, COCO, SSD/MobileNet, học chuyển giao và các thư viện triển khai. Có [tệp BibTeX](docs/references.bib), bảng gợi ý đặt trích dẫn theo từng phần báo cáo và ghi chú về nguồn dữ liệu CanTho/HCMC cần bổ sung.
 
 ## Nguồn artefact
 
